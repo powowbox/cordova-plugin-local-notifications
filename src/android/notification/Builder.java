@@ -120,7 +120,7 @@ public class Builder {
         int ledColor  = options.getLedColor();
         long[] vibrate = options.getVibrate();
         NotificationCompat.Builder builder;
-	
+	builder = new NotificationCompat.Builder(context);	
 	NotificationCompat.BigTextStyle notification = new NotificationCompat.BigTextStyle(builder);
 
 
