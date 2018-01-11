@@ -120,18 +120,24 @@ public class Builder {
         int ledColor  = options.getLedColor();
         long[] vibrate = options.getVibrate();
         NotificationCompat.Builder builder;
+	
+	NotificationCompat.BigTextStyle notification = new NotificationCompat.BigTextStyle(builder);
 
-        builder = new NotificationCompat.Builder(context)
-                .setDefaults(0)
-                .setContentTitle(options.getTitle())
-                .setContentText(options.getText())
-                .setNumber(options.getBadgeNumber())
-                .setTicker(options.getText())
-                .setAutoCancel(options.isAutoClear())
-                .setOngoing(options.isOngoing())
-                .setColor(options.getColor());
 
-        if (ledColor != 0) {
+	builder.setStyle(notification
+                         .bigText(options.getText())
+                         .setBigContentTitle(options.getTitle()));
+        builder.setContentTitle(options.getTitle());
+        builder.setContentText(options.getText());
+
+        builder.setDefaults(0);
+        builder.setNumber(options.getBadgeNumber());
+        builder.setTicker(options.getText());
+        builder.setAutoCancel(options.isAutoClear());
+        builder.setOngoing(options.isOngoing());
+        builder.setColor(options.getColor());
+        
+	if (ledColor != 0) {
             builder.setLights(ledColor, options.getLedOnTime(), options.getLedOffTime());
         }
 
